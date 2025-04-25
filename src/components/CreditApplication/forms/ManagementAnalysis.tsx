@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../../../app/store"; // Adjust the path 
 import { updateManagementForm } from "../../../features/fill_application/fillApplicationFormSlice"; // Adjust the path based on your slice location
 import ShimmerEffect from "../../common/ShimmerEffect";
 import { fetchManagement } from "../../../api/fill_application/managementApi";
+import { formatText } from "../../../utilities/formatText";
 
 
 const ManagementAnalysis: React.FC<{ isEditable: boolean; }> = ({ isEditable }) => {
@@ -45,7 +46,7 @@ const ManagementAnalysis: React.FC<{ isEditable: boolean; }> = ({ isEditable }) 
                 multiline
                 rows={Math.max(1, Math.ceil((data || '').length / 50))} 
                 fullWidth
-                value={data}
+                value={(data ? formatText(data) : '')}
                 onChange={(e) => handleChange("boardOfDirectorsProfile", e.target.value)}
                 variant="outlined"
                 slotProps={{
